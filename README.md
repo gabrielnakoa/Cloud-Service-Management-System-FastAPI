@@ -49,52 +49,41 @@ service_id
 - uvicorn app:main --reload
 
 7. Test the Endpoints using Postman
-- Register a New User
-URL: /register
-Method: POST
-Body: Provide username, and password in the JSON body.
-- Login and Obtain JWT
-URL: /login
-Method: POST
-Body: Provide username and password to get a JWT token.
-- Access a Service
-URL: /services/{service_name}
-Method: GET
-- Change a user's plan as an admin
-URL: /admin/change-plan/
-Method: PUT
-Body: Provide a username and new_plan
-- Change a plan as a customer
-URL: /subscribe/
-Method: PUT
-Body: Provide the name of a new plan
-- View current plan as a customer
-URL: /see-plan/
-Method: GET
-- View the amount of calls you made as a customer
-URL: /usage-statistics/
-Method: GET
-- Create a plan as an admin
-URL: /admin/create-plan/
-Method: POST
-Body: {
-    plan_name: str
-    plan_limit: int
-    plan_description: str
-    plan_services: List[str]
-}
-- Delete a plan as an admin
-URL: /admin/delete-plan/{plan_name}
-Method: DELETE
-- Make a change to an existing plan as an admin
-URL: /admin/update-plan/{old_plan}
-Method: PUT
-- Create a new service as an admin
-URL: /admin/add-service/
-Method: POST
-- Delete a service as an admin
-URL: /admin/delete-service/{service_name}
-Method: DELETE
-- Make a change to an existing service as an admin
-URL: /admin/update-service/{old_service_name}
-Method: PUT
+/register
+Register a new user.
+
+/login
+Log in and obtain a JWT token.
+
+/services/{service_name}
+Access a service.
+
+/admin/change-plan/
+Change a user's plan as an admin.
+
+/subscribe/
+Change a plan as a customer.
+
+/see-plan/
+View the current plan as a customer.
+
+/usage-statistics/
+View the amount of calls you made as a customer.
+
+/admin/create-plan/
+Create a plan as an admin.
+
+/admin/delete-plan/{plan_name}
+Delete a plan as an admin.
+
+/admin/update-plan/{old_plan}
+Make changes to an existing plan as an admin.
+
+/admin/add-service/
+Create a new service as an admin.
+
+/admin/delete-service/{service_name}
+Delete a service as an admin.
+
+/admin/update-service/{old_service_name}
+Make changes to an existing service as an admin.
