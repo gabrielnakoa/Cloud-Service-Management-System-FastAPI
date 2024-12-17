@@ -1,0 +1,43 @@
+-- Create the Subscription Plan Table
+CREATE TABLE subscription_plan (
+    plan_id INT AUTO_INCREMENT PRIMARY KEY,
+    plan_name VARCHAR(225) NOT NULL,
+    plan_limit INT NOT NULL,
+    plan_description VARCHAR(225)
+);
+
+-- Create the Service Table
+CREATE TABLE services (
+    service_id INT AUTO_INCREMENT PRIMARY KEY,
+    service_name VARCHAR(225) NOT NULL,
+    service_description VARCHAR(225),
+    service_endpoint VARCHAR(225)
+);
+
+-- Create the Service-Plan Mapping Table (Many-to-Many Relationship)
+CREATE TABLE service_plan_mapping (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    service_id INT NOT NULL,
+    plan_id INT NOT NULL,
+    FOREIGN KEY (service_id) REFERENCES services(service_id) ON DELETE CASCADE,
+    FOREIGN KEY (plan_id) REFERENCES subscription_plan(plan_id) ON DELETE CASCADE
+);
+
+-- Create the Users Table
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(50) DEFAULT 'customer',
+    plan VARCHAR(50) DEFAULT 'basic'
+);
+
+-- Create the Service Usage Table
+CREATE TABLE service_usage (
+    usage_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    service_id INT NOT NULL,
+    calls_made INT DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (service_id) REFERENCES services(service_id) ON DELETE CASCADE
+);
